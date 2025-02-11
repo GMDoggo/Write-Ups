@@ -26,12 +26,14 @@ When opening the shipping.db file I saw the first row is mimetype which indicate
 I will attempt to change the file format of shipping.db to shipping.ods and try and open the file.
 
 Opening the file gives us what appears to be the actually shipping table full of shipping orders.
-![]({D6CBFECB-C1BC-4CC7-9340-DCEE2A2A781F}.png)
+![image](https://github.com/user-attachments/assets/e6782699-f0ca-4677-8684-f69f95e76f1b)
+
 
 Applying a basic filter and filtering on company Aegis Defense solutions shows that the company appears to ship to the same location consistently. I am going to manually sift through and see if the other companies are the same. If so we can look for any outliers to be the fraudulent order.
 
 After sifting through the companies we have found an outlier in Guardian Armaments orders seen below.
-![]({658AA1B2-25DE-4202-9A47-BFE62126FAB6}.png)
+![image](https://github.com/user-attachments/assets/c52d18a6-e5cd-4e48-996a-81ac40a52fbe)
+
 Entering the order number for Task 1 gives us the completion allowing us to proceed forward.
 
 GUA0006453
