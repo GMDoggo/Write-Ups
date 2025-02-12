@@ -30,6 +30,7 @@ Was able to `sudo -u user2 /bin/bash` which weirdly moved me over to user2, I th
 [Exploit for NOPASSWD /bin/bash ](https://medium.com/schkn/linux-privilege-escalation-using-text-editors-and-files-part-1-a8373396708d) 
 
 This is interesting
+
 ![image](https://github.com/user-attachments/assets/7994d2ee-9c99-46e1-b5e1-cc0bd8b90ce8)
 
 Doesn't appear the cron jobs are useful to me
