@@ -30,13 +30,17 @@ Was able to `sudo -u user2 /bin/bash` which weirdly moved me over to user2, I th
 [Exploit for NOPASSWD /bin/bash ](https://medium.com/schkn/linux-privilege-escalation-using-text-editors-and-files-part-1-a8373396708d) 
 
 This is interesting
-![[Pasted image 20240813222731.png]]
-Doesn't appear the cron jobs are useful to me
-Nothing in history
 
-![[Pasted image 20240813231059.png]]
+![image](https://github.com/user-attachments/assets/7994d2ee-9c99-46e1-b5e1-cc0bd8b90ce8)
+
+Doesn't appear the cron jobs are useful to me
+Nothing in command history
+
+![image](https://github.com/user-attachments/assets/3ab80913-5de4-461a-a700-342c2589d7b4)
+
 I was able to use `find / -name authorized_keys`
 
 We can read the id_rsa so we can copy the key and login as root from our machine
 
-![[Pasted image 20240813231206.png]]
+![image](https://github.com/user-attachments/assets/610ac717-e356-40c2-bd03-4ba8c0af15dc)
+

@@ -18,7 +18,7 @@ PORT     STATE SERVICE
 
 ```
 
-RDP doesn't seem useful need a kerberos ticket for authentication.
+RDP doesn't seem useful need a Kerberos ticket for authentication.
 Take a look at SMB on 445
 ## NFS
 ```
@@ -28,9 +28,10 @@ Export list for 10.129.202.41:
 
 ```
 
-It does not appear we can view the nfs share
+It does not appear we can view the NFS share
 
-![[Pasted image 20240924210059.png]]
+![image](https://github.com/user-attachments/assets/9151d322-5a3b-49fb-802a-4d168cfe539d)
+
 
 SMB map doesn't appear to find anything even using the provided credentials, going to use enum4linux next
 
@@ -96,10 +97,10 @@ Lets see if we can RDP now
 with that we have RDP access to the host now to find passwords in the SQL server I believe based on the hint 
 "In SQL Management Studio, we can edit the last 200 entries of the selected database and read the entries accordingly. We also need to keep in mind, that each Windows system has an Administrator account"
 
-It appears we need a alternative user SA does not appear to be the user for 
-![[Pasted image 20240924213813.png]]
+It appears we need an alternative user SA does not appear to be the user for 
+![image](https://github.com/user-attachments/assets/cda2d9ab-b51c-4460-84c5-3e2babe4d70c)
 
-Lets enumerate SMB instead
+Let's enumerate SMB instead
 
 `enum4linux -a -u "alex" -p "lol123!mD" 10.129.202.41`
 `crackmapexec smb 10.129.202.41 --shares -u 'alex' -p 'lol123!mD' -d 'WINMEDIUM'`
@@ -123,16 +124,17 @@ SMB         10.129.202.41   445    WINMEDIUM        Users           READ
 
 ```
 
-devshare has read write permissions
+devshare has read-write permissions
 `smbclient -U alex \\\\10.129.202.41\\devshare`
-![[Pasted image 20240924214414.png]]
+![image](https://github.com/user-attachments/assets/214db3df-749e-4c2f-b450-3ddd2b45d657)
 we now have the sa creds
-![[Pasted image 20240924214430.png]]
+![image](https://github.com/user-attachments/assets/4af21542-3ed6-4f86-91be-b02384a0bf63)
 sa:87N1ns@slls83
 
-Appears sa does not match that password. Keep in mind the hint is We also need to keep in mind, that each Windows system has an Administrator account. so lets test for password reuse.
+It appears sa does not match that password. Keep in mind the hint is We also need to keep in mind, that each Windows system has an Administrator account. so let's test for password reuse.
+I Ran SQL as admin with the creds above and the program opened. and connected to the database
 
-Ran SQL as admin with the creds above and program opened. and connected to database
-![[Pasted image 20240924214929.png]]
-Found a table and created a query to find HTB user in table 
-![[Pasted image 20240924215254.png]]
+![image](https://github.com/user-attachments/assets/08489cc0-457a-490c-aebe-027e6ada05ba)
+
+Found a table and created a query to find HTB user in the table, which has our flag.
+![image](https://github.com/user-attachments/assets/c7ee98bb-ebfe-4273-946f-747808d1f8b7)

@@ -5,7 +5,8 @@
 + Gain a foothold on the target and submit the user.txt flag
 
 
-![[Pasted image 20240814163305.png]]
+![image](https://github.com/user-attachments/assets/6fc2b17e-a7d3-483c-a29f-7c77e168601b)
+
 Located in the source file, we can see that there is a directory named nibble blog.
 To further enumerate I am going to use GoBuster.
 So far we have some decent sub directories
@@ -45,20 +46,24 @@ In the contents/private/ directory we find a users.xml, which confirms the admin
 <session_date type="integer">1514544131</session_date>
 </user>
 ```
-Now we have to find a password to login with.
-Everything around this website is related to nibbles
-The admin password is nibbles
+After bashing my head for a while, the next step came in the form of guessing Admin credentials as the password was the name of the blog "nibbles"
 
 This version of Nibbleblog 4.0.3 is vulnerable to Arbitrary File Upload CVE-2015-6967
-![[Pasted image 20240814171401.png]]
-We can use this my image tab to upload a malicious file.
-![[c5dd6323e1e549638c18f62e96d0909d.png]]
+![image](https://github.com/user-attachments/assets/da3862b2-0f6b-486b-a7f4-7839b3e2eb27)
 
-- ![[Pasted image 20240814171648.png]]
+We can use this my image tab to upload a malicious file.
+![image](https://github.com/user-attachments/assets/4c80c009-437f-4d06-b284-76a4f55da29e)
+
+
+![image](https://github.com/user-attachments/assets/64b1797b-a36a-4fa7-80d3-ab8d6cb7e0d3)
+
 - It seems our file may have been uploaded
-- ![[Pasted image 20240814171705.png]]
+  
+![image](https://github.com/user-attachments/assets/2c62875b-37c4-4f09-960b-c4ee67566eae)
+
 - So lets navigate back to content to find out
-- ![[Pasted image 20240814171741.png]]
+![image](https://github.com/user-attachments/assets/32aa82b7-ed11-4593-b793-4be5b6bd17b9)
+
 - Which we see our file is now in the my_image directory
 ```
 ┌──(kali㉿kali)-[~/Downloads]
@@ -67,8 +72,10 @@ We can use this my image tab to upload a malicious file.
 
 ```
 We know it executes the file. Now we just need to find a file to give it.
-We can find a bash one liner in php
-![[Pasted image 20240814172846.png]]
+We can find a bash one liner in PHP
+
+![image](https://github.com/user-attachments/assets/4a3138d1-560f-4246-b5a5-43b5e3318130)
+
 Setup a listener
 ```
 nc -lvnp 9443
