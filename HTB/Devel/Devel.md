@@ -96,7 +96,10 @@ Now that we have the `nc.exe` file hosted, we can set up a listener for the shel
 ### Enumeration
 
 #### Manual Enumeration
-
+Run Windows-Exploit-Suggester locally
+![](Images/Pasted%20image%2020250315173504.png)
+We will be using MS10-059
+https://github.com/abatchy17/WindowsExploits/tree/master/MS10-059%20-%20Chimichurri
 #### Metasploit Enumeration
 
 1. Background the session and load up **exploit suggester**:
@@ -116,26 +119,18 @@ Now we have **system-level privileges**.
 
 #### Manual Privilege Escalation
 
-1. Run **Windows-Exploit-Suggester** locally:
-    
-    ![Windows-Exploit-Suggester](Images/Pasted%20image%2020250315173504.png)
-    
-2. We will use **MS10-059**:  
+1. We will use **MS10-059**:  
     [GitHub Link](https://github.com/abatchy17/WindowsExploits/tree/master/MS10-059%20-%20Chimichurri)
     
-3. Host the exploit using a simple Python web server:
-    
-    yaml
-    
-    CopyEdit
+2. Host the exploit using a simple Python web server:
     
     `python3 -m http.server 8000`
     
-4. Using `certutil`, transfer the file over:
+3. Using `certutil`, transfer the file over:
     
     ![Certutil File Transfer](Images/Pasted%20image%2020250315174309.png)
     
-5. Exploit the vulnerability:
+4. Exploit the vulnerability:
     
     ![Running Exploit](Images/Pasted%20image%2020250315174427.png) ![Successful Exploit](Images/Pasted%20image%2020250315174411.png) ![Privilege Escalation](Images/Pasted%20image%2020250315174501.png)
     
