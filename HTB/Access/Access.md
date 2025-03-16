@@ -59,11 +59,11 @@ Upon inspecting the files:
 
 Let's investigate the **backup.mdb** file using `mdbtools` to interact with the Microsoft Access database.
 
-![](Pasted%20image%2020250316152915.png)
+![](Images/Pasted%20image%2020250316152915.png)
 
 By querying the database, we extract data from the `auth_user` table, which reveals some potentially useful credentials.
 
-![](Pasted%20image%2020250316153720.png) ![](Pasted%20image%2020250316154322.png)
+![](Images/Pasted%20image%2020250316153720.png) ![](Pasted%20image%2020250316154322.png)
 
 We find the following credentials:
 
@@ -73,7 +73,7 @@ We find the following credentials:
 
 Given the username `Engineer` matches the file from the **Engineers** directory, we try this password to unlock the **Access Control.zip** file, which succeeds.
 
-![](Pasted%20image%2020250316154448.png)
+![](Images/Pasted%20image%2020250316154448.png)
 
 The `.pst` file extracted from the zip is not human-readable, so we use the `readpst` tool to convert it to the **mbox** format, which is easier to read. Upon doing this, we uncover additional credentials:
 ![](Images/Pasted%20image%2020250316154810.png)
@@ -86,11 +86,11 @@ The `.pst` file extracted from the zip is not human-readable, so we use the `rea
 
 With valid credentials in hand, we note that **Telnet** is open from our earlier scan. We attempt to authenticate over Telnet using the `security:4Cc3ssC0ntr0ller` credentials and successfully establish a shell.
 
-![](Pasted%20image%2020250316155219.png)
+![](Images/Pasted%20image%2020250316155219.png)
 
 After gaining access, we quickly grab the user flag:
 
-![](Pasted%20image%2020250316155255.png)
+![](Images/Pasted%20image%2020250316155255.png)
 
 ---
 
@@ -100,17 +100,17 @@ After gaining access, we quickly grab the user flag:
 
 Further enumeration of the file system uncovers a **LNK** file on the public desktop.
 
-![](Pasted%20image%2020250316155456.png)
+![](Images/Pasted%20image%2020250316155456.png)
 
 Examining the strings within the file reveals cached **Administrator** credentials. This indicates we can leverage the cached credentials to grab our final flag.
 
-![](Pasted%20image%2020250316155656.png)
+![](Images/Pasted%20image%2020250316155656.png)
 
 To confirm, we run the following command to view cached credentials:
 
 `cmdkey /list`
 
-![](Pasted%20image%2020250316155805.png)
+![](Images/Pasted%20image%2020250316155805.png)
 
 Now that we have verified the presence of cached credentials, we can use `runas` to execute commands as the Administrator and retrieve the root flag:
 
