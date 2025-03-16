@@ -133,11 +133,15 @@ After successfully cracking the hash, I obtained the passphrase `moonshine1`.
 
 
 Within the Keepass Database there were numerous username:password combinations
+
 ![](Images/Pasted%20image%2020250316140636.png)
+
 Utilizing the passwords I will generate a password list to attempt authentication.
+
 ![](Images/Pasted%20image%2020250316140829.png)
 ![](Images/Pasted%20image%2020250316140948.png)
-None of the passwords I was able to extract were able to generate a successful authentication.
+
+None of the passwords I was able to extract generated a successful authentication.
 
 One of the files appears to be a hash rather than a password so maybe I will attempt passing that to the host.
 ![](Images/Pasted%20image%2020250316141115.png)
