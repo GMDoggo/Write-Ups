@@ -1,10 +1,48 @@
 ## Initial Enumeration
 
-`PORT      STATE SERVICE      VERSION 135/tcp   open  msrpc        Microsoft Windows RPC 139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn 445/tcp   open  microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP) 9255/tcp open  http    AChat chat system httpd |_http-title: Site doesn't have a title. |_http-server-header: AChat 9256/tcp open  achat   AChat chat system 49152/tcp open  msrpc        Microsoft Windows RPC 49153/tcp open  msrpc        Microsoft Windows RPC 49154/tcp open  msrpc        Microsoft Windows RPC 49155/tcp open  msrpc        Microsoft Windows RPC 49156/tcp open  msrpc        Microsoft Windows RPC 49157/tcp open  msrpc        Microsoft Windows RPC`
+```
+PORT      STATE SERVICE      VERSION
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds Windows 7 Professional 7601 Service Pack 1 microsoft-ds (workgroup: WORKGROUP)
+9255/tcp open  http    AChat chat system httpd
+|_http-title: Site doesn't have a title.
+|_http-server-header: AChat
+9256/tcp open  achat   AChat chat system
+49152/tcp open  msrpc        Microsoft Windows RPC
+49153/tcp open  msrpc        Microsoft Windows RPC
+49154/tcp open  msrpc        Microsoft Windows RPC
+49155/tcp open  msrpc        Microsoft Windows RPC
+49156/tcp open  msrpc        Microsoft Windows RPC
+49157/tcp open  msrpc        Microsoft Windows RPC
+```
 
 ### SMB Enumeration
 
-`Host script results: | smb-security-mode:  |   account_used: guest |   authentication_level: user |   challenge_response: supported |_  message_signing: disabled (dangerous, but default) | smb2-time:  |   date: 2025-03-16T07:26:01 |_  start_date: 2025-03-14T12:50:01 |_clock-skew: mean: 6h20m04s, deviation: 2h18m36s, median: 5h00m02s | smb2-security-mode:  |   2:1:0:  |_    Message signing enabled but not required | smb-os-discovery:  |   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1) |   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional |   Computer name: Chatterbox |   NetBIOS computer name: CHATTERBOX\x00 |   Workgroup: WORKGROUP\x00 |_  System time: 2025-03-16T03:26:02-04:00`
+```
+Host script results:
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-time: 
+|   date: 2025-03-16T07:26:01
+|_  start_date: 2025-03-14T12:50:01
+|_clock-skew: mean: 6h20m04s, deviation: 2h18m36s, median: 5h00m02s
+| smb2-security-mode: 
+|   2:1:0: 
+|_    Message signing enabled but not required
+| smb-os-discovery: 
+|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+|   Computer name: Chatterbox
+|   NetBIOS computer name: CHATTERBOX\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2025-03-16T03:26:02-04:00
+
+```
+
 
 ### Additional Information
 
