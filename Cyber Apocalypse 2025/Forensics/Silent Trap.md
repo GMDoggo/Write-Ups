@@ -83,6 +83,7 @@ Network packet captures confirm the IMAP `APPEND` command being used to send enc
 #### Encryption/Decryption (`xor` Method)
 The `xor` method acts as a wrapper for the `Exor.Encrypt` method, using a hardcoded byte array as the encryption key. This key is used to encrypt command outputs before sending them to the C2 server and to decrypt commands received from the server.
 ![](Images/Pasted%20image%2020250327220451.png)
+
 This hardcoded key is a critical vulnerability, as it allows for the decryption of all C2 communication.
 
 There is two main flows to this, encrypting all of the commands being sent as well as receiving and decrypting the received data.
