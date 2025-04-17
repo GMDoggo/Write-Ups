@@ -26,11 +26,17 @@ Hash is already dumped
 [Adobe ColdFusion 8 - Remote Command Execution | cfm/webapps/50057.py](https://www.exploit-db.com/exploits/50057)
 
 Update system information in payload
+
 ![](Images/{7FD009FA-B226-434F-8FED-29CD4B0D8465}.png)
+
 ![](Images/{BB5A311C-273A-42C7-8F23-8F7A565A767E}.png)
+
 Shell obtained
+
 ![](Images/{F0048586-2F50-41D2-90D2-70D8B795DC3C}.png)
+
 ![](Images/{9CED4D39-68D3-4115-9CAD-7A0A6B666602}.png)
+
 Can also pop a shell with metasploit `windows/http/coldfusion_fckeditor`
 ## Priv Esc
 ### System Info
@@ -77,6 +83,7 @@ Network Card(s):           1 NIC(s) Installed.
 ```
 
 ![](Images/{2EEC5AE2-CA80-44FB-A8C9-E983B2999C3F}%201.png)
+
 SeImpersonatePriv
 
 Run local-exploit-suggester
@@ -108,8 +115,12 @@ Run local-exploit-suggester
 [*] done
 ```
 [Chimichurri-MS10-059](https://github.com/egre55/windows-kernel-exploits/blob/master/MS10-059:%20Chimichurri/Source/Chimichurri.ncb)
+
 Transfer the file on over
+
 ![](Images/Pasted%20image%2020250416211358.png)
+
 Slap in the options and you are good to go
+
 ![](Images/Pasted%20image%2020250416211520.png)
 ![](Images/Pasted%20image%2020250416211558.png)
