@@ -30,7 +30,10 @@ Since URG pointer is a 16 bit value we have to examine them that way. Let me con
 For 16-bit values, we could look at:
 - The lower 8 bits (value % 256)
 - The upper 8 bits (value // 256)
-![](Images/Pasted%20image%2020250419190833.png)
+
+  
+![](../Images/Pasted%20image%2020250419190833.png)
+
 There is a bit of formatting issues but the main text container in {} of the flag was correct.
 ```
 DawgCTF{villagers_bonds}
