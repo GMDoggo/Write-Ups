@@ -1,5 +1,6 @@
+# About
 locate and connect to the server running on **caddyshack.umbccd.net**
-
+# Solve
 nslookup returns 130.85.62.85.
 
 A quick nmap scan returns that port 70 is running a service known as gopher
