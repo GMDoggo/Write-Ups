@@ -21,3 +21,5 @@ DawgCTF proved to be a great learning experience. Some of the interesting techni
 Overall, it was a fun and rewarding experience that strengthened my CTF skills and taught me a variety of new techniques across disciplines.
 
 ![](DawgCTF_2025_Certificate.jpg)
+![](TeamStats.png)
+![](UserPerformance.png)
