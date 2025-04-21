@@ -9,8 +9,12 @@ Open with a registry viewer. The following directory is where scheduled tasks li
 SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks\
 ```
 We find the red team malicious scheduled task in registry
-![](Images/Pasted%20image%2020250419143228.png)
+
+![](../Images/Pasted%20image%2020250419143228.png)
+
 The author of the file is our flag
-![](Images/Pasted%20image%2020250419143241.png)
+
+![](../Images/Pasted%20image%2020250419143241.png)
+
 `DawgCTF{Fun_W1th_T4sks}`
 
