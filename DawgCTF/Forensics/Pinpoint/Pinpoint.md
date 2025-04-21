@@ -16,8 +16,10 @@ A **VERIFY** command (`0x20`) is typically used to check a PIN.
 ```
 frame contains 00:20:00:80
 ```
-![](Images/Pasted%20image%2020250419221726.png)
-![](Images/Pasted%20image%2020250419221745.png)
+![](../Images/Pasted%20image%2020250419221726.png)
+
+![](../Images/Pasted%20image%2020250419221745.png)
+
 At the end we see the PIN value 7901.
 
 ```
