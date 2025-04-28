@@ -5,6 +5,7 @@
 
 # Solve
 ![](../Images/Pasted%20image%2020250428084619.png)
+
 In this challenge you are prompt with various questions and if you fail a question it terminates the session. I was able to build a question bank by quickly scripting it out in python. After building the question bank the rest was just making sure the answers were correct.
 
 
