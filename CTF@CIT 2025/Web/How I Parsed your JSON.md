@@ -2,6 +2,9 @@
 "This is the story of how I defined your schema."
 The flag is in secrets.txt
 
+![image](https://github.com/user-attachments/assets/2b26c3d3-b5b2-459f-9174-3be3318c94c2)
+
+
 # Solve
 Based on this and the URLs when making searches, I knew that I would be looking for some sort of LFI to read the flag.
 `/select?record=*&container=employees`
