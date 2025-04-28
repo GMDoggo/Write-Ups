@@ -1,5 +1,6 @@
 # About
 We have to deobfuscate lua and get the flag
+
 ![](../Images/Pasted%20image%2020250428092911.png)
 
 # Solve
