@@ -1,6 +1,8 @@
 # About
 You were supposed to be a hero, Brian!
+
 ![](../Images/Pasted%20image%2020250428105221.png)
+
 # Solve
 ```
 zsteg ChickenJockey.png 
