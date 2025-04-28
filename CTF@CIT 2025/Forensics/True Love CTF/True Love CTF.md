@@ -2,7 +2,9 @@
 # About 
 I got this strange email from another CTF participant not too long ago. I am just not sure what they mean by this...
 Do you love CTFs as much as they do?
+
 ![](../Images/Pasted%20image%2020250428082055.png)
+
 # Solve
 Stored in the Email DKIM Signatures is the following
 ```
@@ -22,4 +24,5 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=waifu.club; s=mail;
 	 lfbDB2M19jdGYkX3QwMH0=
 ```
 B64 decoding gets you
+
 ![](../Images/Pasted%20image%2020250425231603.png)
