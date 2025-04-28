@@ -11,12 +11,11 @@ In this challenge you are prompt with various questions and if you fail a questi
 
 
 ```
-from pwn import *
-
+import socket
+import logging
 
 REMOTE_HOST = "23.179.17.40"
 REMOTE_PORT = 5393
-
 
 response_map = {
     "Which famous Mongol khanate ruled over much of Russia, Ukraine, and parts of Central Asia during the 13th and 14th centuries?": "Golden Horde",
@@ -40,63 +39,83 @@ response_map = {
     "What animal is used extensively by Mongolian herders for milk, wool, and meat?": "yak",
 }
 
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+logger = logging.getLogger()
 
-context.log_level = "info"
-
-
-p = None
+sock = None
 try:
-    log.info(f"Connecting to {REMOTE_HOST}:{REMOTE_PORT}")
-    p = remote(REMOTE_HOST, REMOTE_PORT)
+    logger.info(f"Connecting to {REMOTE_HOST}:{REMOTE_PORT}")
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(2)  # Set timeout for receiving data
+    sock.connect((REMOTE_HOST, REMOTE_PORT))
 
     while True:
         try:
-            received_bytes = p.recvline(timeout=2)
+            # Receive data line by line
+            received_lines = []
+            while True:
+                chunk = sock.recv(1024).decode(errors="ignore")
+                if not chunk:
+                    logger.warning("Received empty data. Connection likely closed by server.")
+                    break
+                lines = chunk.split("\n")
+                for line in lines:
+                    line = line.strip()
+                    if line:
+                        received_lines.append(line)
+                    if line == ">":  # Prompt indicates end of question
+                        break
+                if received_lines and received_lines[-1] == ">":
+                    break
 
-            if not received_bytes:
-                log.warning("Received empty bytes. Connection likely closed by server.")
+            if not received_lines:
+                logger.warning("No data received.")
                 break
 
-            received_string = received_bytes.decode(errors="ignore").strip()
+            # Log all received lines
+            logger.info(f"Received lines: {received_lines}")
 
-            if not received_string:
+            # Find the actual question (last non-prompt line)
+            question = None
+            for line in reversed(received_lines[:-1]):  # Exclude the prompt '>'
+                if line in response_map:
+                    question = line
+                    break
+
+            if question:
+                response_to_send = response_map[question]
+                logger.info(f"Recognized question: '{question}'")
+                logger.info(f"Sending: '{response_to_send}'")
+                sock.sendall((response_to_send + "\n").encode())
+            else:
+                logger.warning(f"No recognized question in: {received_lines}")
                 continue
 
-            log.info(f"Received: '{received_string}'")
-
-            if received_string in response_map:
-                response_to_send = response_map[received_string]
-                log.success(f"Recognized key. Sending: '{response_to_send}'")
-                p.sendline(response_to_send.encode())
-            else:
-                pass
-
-        except EOFError:
-            log.info("Connection closed by remote host (EOF).")
+        except socket.timeout:
+            logger.warning("Receive timeout occurred.")
+            break
+        except ConnectionResetError:
+            logger.info("Connection closed by remote host (reset).")
             break
         except Exception as e:
-            log.error(f"An error occurred during interaction: {e}")
+            logger.error(f"An error occurred during interaction: {e}")
             import traceback
-
             traceback.print_exc()
             break
 
 except ConnectionRefusedError:
-    log.error(
-        f"Connection refused by {REMOTE_HOST}:{REMOTE_PORT}. Is the service running?"
-    )
+    logger.error(f"Connection refused by {REMOTE_HOST}:{REMOTE_PORT}. Is the service running?")
 except Exception as e:
-    log.error(f"Failed to connect or other setup error: {e}")
+    logger.error(f"Failed to connect or other setup error: {e}")
     import traceback
-
     traceback.print_exc()
 
 finally:
-    if p and p.connected():
-        log.info("Closing connection.")
-        p.close()
-    elif p and not p.connected():
-        log.info("Connection already closed.")
-    else:
-        log.info("Connection was not established.")
+    if sock:
+        logger.info("Closing connection.")
+        sock.close()
 ```
+
+![image](https://github.com/user-attachments/assets/67719b25-6101-43d5-872f-4234b1c8a59f)
+
