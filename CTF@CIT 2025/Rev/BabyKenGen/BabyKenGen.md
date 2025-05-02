@@ -1,7 +1,7 @@
 # About
 ![](../Images/Pasted%20image%2020250428093412.png)
 
-
+# Solve
 main
 ```
 undefined8 main(void)

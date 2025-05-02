@@ -1,6 +1,8 @@
 # About
 Here we go!
+
 ![](../Images/Pasted%20image%2020250428093107.png)
+
 # Solve
 Run the program and get the output
 ```

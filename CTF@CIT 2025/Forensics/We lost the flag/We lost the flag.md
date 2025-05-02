@@ -1,6 +1,8 @@
 # About
 Sorry everyone, we unfortunately lost the flag for this challenge.
+
 ![](../Images/Pasted%20image%2020250428082127.png)
+
 ## Solve
 Doing a quick `file lost.png` shows that this is not a valid png file.
 ```
