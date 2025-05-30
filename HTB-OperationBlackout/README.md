@@ -12,5 +12,4 @@ While I brought strength to traditional categories, my real focus was on pushing
 
 HTB Operation Blackout was both a technical challenge and a professional milestone. Representing my company, I was proud to contribute to our top 18% finish while broadening my expertise across several advanced and emerging cybersecurity domains. The competition deepened my passion for lifelong learning in this field, and I remain committed to continuing my development through future CTFs and hands-on exploration of complex topics. Each challenge reaffirmed my drive to keep growing, keep learning, and help others do the same.
 
-![](Certificate.jpg)
-
+![certificate](https://github.com/user-attachments/assets/edc90149-7870-4850-a361-b388b0ea8a07)
