@@ -1,0 +1,6 @@
+# About  
+I participated in a recent capture-the-flag competition alongside two teammates, where we battled through a gauntlet of technical challenges across categories like web, crypto, and more. Out of 1,234 registered teams, we proudly secured **23rd place**—a result that exceeded our expectations and reflected the effort we poured in over the weekend.
+
+One of my proudest moments during the CTF was solving a challenge called _Card Master_. It centered around exploiting a Discord bot—a deceptively simple setup that turned into a deep rabbit hole of analysis and creativity. After we discovered a command that allowed us to dump the bot’s source code, we realized it was interpreting usernames in an unsafe way. By injecting a payload directly into my Discord username, I managed to exploit a command injection vulnerability that bypassed restrictions and gave us access to the flag.
+
+It was a perfect mix of real-world exploitation and creative problem-solving, and solving it felt incredibly rewarding. The CTF as a whole was packed with learning opportunities and a few humbling moments, but I walked away with new skills, deeper curiosity, and a strong sense of progress in my growth as a security professional.
